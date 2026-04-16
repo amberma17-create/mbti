@@ -1,0 +1,219 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2113.65">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px 'PingFang TC'}
+    span.s1 {font: 12.0px 'PingFang TC'}
+    span.s2 {font: 12.0px 'Apple Color Emoji'}
+    span.s3 {font: 12.0px Helvetica}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="zh-TW"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;<span class="s1">妳的</span>MBTI<span class="s1">傾向｜好命自造指南</span>&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- <span class="s1">載入</span> React &amp; Babel --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://unpkg.com/react@18/umd/react.production.min.js"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://unpkg.com/@babel/standalone/babel.min.js"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- <span class="s1">載入</span> Tailwind CSS --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&amp;display=swap');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>body { font-family: 'Noto Sans TC', sans-serif; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="root"&gt;&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script type="text/babel"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const { useState } = React;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// <span class="s1">內建</span> SVG <span class="s1">圖標</span> (<span class="s1">取代外部套件，保證不當機</span>)</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const Icons = {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>ChevronRight: () =&gt; &lt;svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"&gt;&lt;path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /&gt;&lt;/svg&gt;,</p>
+<p class="p1"><span class="Apple-converted-space">            </span>RefreshCw: () =&gt; &lt;svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"&gt;&lt;path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /&gt;&lt;/svg&gt;,</p>
+<p class="p1"><span class="Apple-converted-space">            </span>Heart: () =&gt; &lt;svg className="w-5 h-5 fill-white" stroke="currentColor" viewBox="0 0 24 24"&gt;&lt;path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /&gt;&lt;/svg&gt;,</p>
+<p class="p1"><span class="Apple-converted-space">            </span>Sparkles: () =&gt; &lt;svg className="w-5 h-5 text-rose-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"&gt;&lt;path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" /&gt;&lt;/svg&gt;,</p>
+<p class="p1"><span class="Apple-converted-space">            </span>Compass: () =&gt; &lt;svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"&gt;&lt;path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16l2.879-2.879m0 0a3 3 0 104.243-4.242 3 3 0 00-4.243 4.242zM21 12a9 9 0 11-18 0 9 9 0 0118 0z" /&gt;&lt;/svg&gt;,</p>
+<p class="p1"><span class="Apple-converted-space">            </span>BookOpen: () =&gt; &lt;svg className="w-4 h-4 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"&gt;&lt;path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /&gt;&lt;/svg&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// --- MBTI 16 <span class="s1">類型資料庫</span> ---</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const questions = [</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 1, text: "<span class="s1">在繁忙的一週結束後，妳通常如何「充電」恢復能量？</span>", dimension: "EI", options: [{ label: "<span class="s1">與親友聚會談心，或是參與熱鬧的社交活動</span>", value: "E" }, { label: "<span class="s1">獨自閱讀、冥想或安靜地待在自己的空間</span>", value: "I" }] },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 2, text: "<span class="s1">當妳來到一個全新的環境時，妳通常會？</span>", dimension: "EI", options: [{ label: "<span class="s1">主動與人寒暄，較容易適應外部環境</span>", value: "E" }, { label: "<span class="s1">先觀察周遭，傾向等想清楚再採取行動</span>", value: "I" }] },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 3, text: "<span class="s1">在處理任務或面對挑戰時，妳更傾向於？</span>", dimension: "EI", options: [{ label: "<span class="s1">邊做邊想，透過行動與討論激發靈感</span>", value: "E" }, { label: "<span class="s1">想好再做，偏好獨立思考完成任務</span>", value: "I" }] },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 4, text: "<span class="s1">在處理事情時，妳比較信任哪種訊息？</span>", dimension: "SN", options: [{ label: "<span class="s1">具體的事實、過去的經驗與確切的數據</span>", value: "S" }, { label: "<span class="s1">直覺、未來的可能性與事物背後的意義</span>", value: "N" }] },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 5, text: "<span class="s1">當有人向妳介紹一個新計畫時，妳會先關注？</span>", dimension: "SN", options: [{ label: "<span class="s1">執行的細節與步驟是否切實可行</span>", value: "S" }, { label: "<span class="s1">這個計畫的遠景與大方向的關聯</span>", value: "N" }] },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 6, text: "<span class="s1">妳如何形容自己的思考風格？</span>", dimension: "SN", options: [{ label: "<span class="s1">實事求是，注重眼前的現實生活細節</span>", value: "S" }, { label: "<span class="s1">想像力強，喜歡探索抽象的理論與概念</span>", value: "N" }] },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 7, text: "<span class="s1">面臨重大決定時，妳的首要考量通常是？</span>", dimension: "TF", options: [{ label: "<span class="s1">邏輯因果、客觀的利弊分析與原則</span>", value: "T" }, { label: "<span class="s1">人的感受、內在價值的和諧與同理心</span>", value: "F" }] },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 8, text: "<span class="s1">當朋友找妳訴苦時，妳的第一反應通常是？</span>", dimension: "TF", options: [{ label: "<span class="s1">冷靜分析問題，嘗試提供解決方案</span>", value: "T" }, { label: "<span class="s1">感同身受，給予情感上的認同與安慰</span>", value: "F" }] },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 9, text: "<span class="s1">在團隊合作中，妳認為哪一項更重要？</span>", dimension: "TF", options: [{ label: "<span class="s1">公平公正、對事不對人地推進目標</span>", value: "T" }, { label: "<span class="s1">成員間的關係連結與整體情緒穩定</span>", value: "F" }] },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 10, text: "<span class="s1">妳如何規劃妳的日常生活與假期？</span>", dimension: "JP", options: [{ label: "<span class="s1">有系統的計畫，喜歡事先定好行程</span>", value: "J" }, { label: "<span class="s1">隨興所至，保留高度靈活性與彈性</span>", value: "P" }] },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 11, text: "<span class="s1">在工作截止日期前，妳通常的狀態是？</span>", dimension: "JP", options: [{ label: "<span class="s1">提早規劃並按部就班完成，避免壓力</span>", value: "J" }, { label: "<span class="s1">最後一刻爆發力強，在壓力下更有靈感</span>", value: "P" }] },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 12, text: "<span class="s1">當計畫被打亂時，妳的感受是？</span>", dimension: "JP", options: [{ label: "<span class="s1">感到焦慮，希望能趕快回歸原本的掌控</span>", value: "J" }, { label: "<span class="s1">覺得沒關係，隨機應變也是一種樂趣</span>", value: "P" }] }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>const mbtiData = {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>"ISTJ": { name: "<span class="s1">守護者型</span>", functions: ["Si <span class="s1">內向實感</span>", "Te <span class="s1">外向思考</span>", "Fi <span class="s1">內向情感</span>", "Ne <span class="s1">外向直覺</span>"], fortune: "<span class="s1">妳是可靠的基石。轉型策略應利用妳的行政與組織天分，嘗試發展「指導者」角色，而非單純的「執行者」。</span>" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>"ISFJ": { name: "<span class="s1">保護者型</span>", functions: ["Si <span class="s1">內向實感</span>", "Fe <span class="s1">外向情感</span>", "Ti <span class="s1">內向思考</span>", "Ne <span class="s1">外向直覺</span>"], fortune: "<span class="s1">細心體貼的妳，轉型時需釐清自我界線。學習滿足他人需求前先照顧自己，妳的價值不只是付出。</span>" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>"ESTJ": { name: "<span class="s1">督察型</span>", functions: ["Te <span class="s1">外向思考</span>", "Si <span class="s1">內向實感</span>", "Ne <span class="s1">外向直覺</span>", "Fi <span class="s1">內向情感</span>"], fortune: "<span class="s1">天生的掌控者，轉型時應學習軟技能。在中年轉型中，試著放下對完美的苛求，培養對情緒訊息的敏感度。</span>" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>"ESFJ": { name: "<span class="s1">主人型</span>", functions: ["Fe <span class="s1">外向情感</span>", "Si <span class="s1">內向實感</span>", "Ne <span class="s1">外向直覺</span>", "Ti <span class="s1">內向思考</span>"], fortune: "<span class="s1">社群的核心。轉型策略應鎖定需要建立共識與連結的領域。練習就事論事，避免因過度在意批評而陷入盲點。</span>" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>"ISTP": { name: "<span class="s1">工匠型</span>", functions: ["Ti <span class="s1">內向思考</span>", "Se <span class="s1">外向實感</span>", "Ni <span class="s1">內向直覺</span>", "Fe <span class="s1">外向情感</span>"], fortune: "<span class="s1">解決問題的高手。轉型時應鎖定具體可操作的技術或藝術領域。第二人生適合自由度高的專家職位。</span>" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>"ISFP": { name: "<span class="s1">藝術家型</span>", functions: ["Fi <span class="s1">內向情感</span>", "Se <span class="s1">外向實感</span>", "Ni <span class="s1">內向直覺</span>", "Te <span class="s1">外向思考</span>"], fortune: "<span class="s1">追求靈魂自由。轉型時應避開高壓規律，投身藝術或自然相關事物。用妳細緻的五感來定義好命。</span>" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>"ESTP": { name: "<span class="s1">企業家型</span>", functions: ["Se <span class="s1">外向實感</span>", "Ti <span class="s1">內向思考</span>", "Fe <span class="s1">外向情感</span>", "Ni <span class="s1">內向直覺</span>"], fortune: "<span class="s1">行動派談判家。利用妳敏銳的市場嗅覺進行轉型。在非正式場合建立關係，會讓妳更有成效。</span>" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>"ESFP": { name: "<span class="s1">表演者型</span>", functions: ["Se <span class="s1">外向實感</span>", "Fi <span class="s1">內向情感</span>", "Te <span class="s1">外向思考</span>", "Ni <span class="s1">內向直覺</span>"], fortune: "<span class="s1">生活家與變色龍。轉型策略應強化結構化規劃（</span>J<span class="s1">型紀律），確保妳的價值驅動型項目具備可持續性。</span>" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>"INFJ": { name: "<span class="s1">諮商師型</span>", functions: ["Ni <span class="s1">內向直覺</span>", "Fe <span class="s1">外向情感</span>", "Ti <span class="s1">內向思考</span>", "Se <span class="s1">外向實感</span>"], fortune: "<span class="s1">理想主義的引導者。轉型時適合精神、心理或社會公益領域。注意「投射」盲點，接納那些妳不願面對的特質。</span>" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>"INFP": { name: "<span class="s1">調停者型</span>", functions: ["Fi <span class="s1">內向情感</span>", "Ne <span class="s1">外向直覺</span>", "Si <span class="s1">內向實感</span>", "Te <span class="s1">外向思考</span>"], fortune: "<span class="s1">內心柔軟的夢想家。轉型需建立具體的目標與時程。練習將豐富的想法付諸行動，避免在內心戲中徘徊。</span>" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>"ENFJ": { name: "<span class="s1">導師型</span>", functions: ["Fe <span class="s1">外向情感</span>", "Ni <span class="s1">內向直覺</span>", "Se <span class="s1">外向實感</span>", "Ti <span class="s1">內向思考</span>"], fortune: "<span class="s1">天生的激勵者。適合教育或培訓。轉型重點在於發展「理則</span>(Logos)<span class="s1">」，即更客觀的思維與獨立的權威。</span>" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>"ENFP": { name: "<span class="s1">代言人型</span>", functions: ["Ne <span class="s1">外向直覺</span>", "Fi <span class="s1">內向情感</span>", "Te <span class="s1">外向思考</span>", "Si <span class="s1">內向實感</span>"], fortune: "<span class="s1">充滿熱誠的代言人。轉型時應鎖定能推動正向改變的系統。練習設定優先順序，找到創意與實際的平衡。</span>" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>"INTJ": { name: "<span class="s1">建築師型</span>", functions: ["Ni <span class="s1">內向直覺</span>", "Te <span class="s1">外向思考</span>", "Fi <span class="s1">內向情感</span>", "Se <span class="s1">外向實感</span>"], fortune: "<span class="s1">謀略的大師。第二人生應關注如何將願景轉化為結構。適時關注「人」的感受，能讓妳的策略更全面。</span>" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>"INTP": { name: "<span class="s1">邏輯學家型</span>", functions: ["Ti <span class="s1">內向思考</span>", "Ne <span class="s1">外向直覺</span>", "Si <span class="s1">內向實感</span>", "Fe <span class="s1">外向情感</span>"], fortune: "<span class="s1">結構與邏輯的專家。轉型建議設定「檢核點」，強迫自己將思考轉化為小步行動，避免與社會脫節。</span>" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>"ENTJ": { name: "<span class="s1">將領型</span>", functions: ["Te <span class="s1">外向思考</span>", "Ni <span class="s1">內向直覺</span>", "Se <span class="s1">外向實感</span>", "Fi <span class="s1">內向情感</span>"], fortune: "<span class="s1">高效能的指揮官。中年轉型的任務是整合「自性」。減少對效率的偏執，在領導中加入長遠的戰略與同理心。</span>" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>"ENTP": { name: "<span class="s1">發明家型</span>", functions: ["Ne <span class="s1">外向直覺</span>", "Ti <span class="s1">內向思考</span>", "Fe <span class="s1">外向情感</span>", "Si <span class="s1">內向實感</span>"], fortune: "<span class="s1">點子王與挑戰者。轉型需注意時間管理的成本。在有限資源中選擇最重要的戰場，別讓創意在多頭並進中耗盡。</span>" }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function App() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const [step, setStep] = useState('intro');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const [currentIndex, setCurrentIndex] = useState(0);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const [scores, setScores] = useState({ EI: [], SN: [], TF: [], JP: [] });</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const [result, setResult] = useState('');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const handleAnswer = (dimension, value) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const newScores = { ...scores, [dimension]: [...scores[dimension], value] };</p>
+<p class="p1"><span class="Apple-converted-space">                </span>setScores(newScores);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (currentIndex &lt; questions.length - 1) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>setCurrentIndex(currentIndex + 1);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const mbti =<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>(newScores.EI.filter(v =&gt; v === 'E').length &gt;= 2 ? 'E' : 'I') +</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>(newScores.SN.filter(v =&gt; v === 'S').length &gt;= 2 ? 'S' : 'N') +</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>(newScores.TF.filter(v =&gt; v === 'T').length &gt;= 2 ? 'T' : 'F') +</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>(newScores.JP.filter(v =&gt; v === 'J').length &gt;= 2 ? 'J' : 'P');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>setResult(mbti);</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>setStep('result');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>return (</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div className="min-h-screen bg-[#faf9f6] text-[#444] p-4 flex flex-col items-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div className="w-full max-w-md mt-6 mb-8 text-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h1 className="text-2xl font-bold text-rose-800 tracking-wider"&gt;<span class="s1">妳的</span>MBTI<span class="s1">傾向｜好命自造指南</span>&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p className="text-stone-400 text-xs mt-2 tracking-[0.2em] uppercase"&gt;Self-Creation Guide for Second Life&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div className="w-full max-w-md bg-white rounded-[2.5rem] shadow-2xl shadow-rose-100 overflow-hidden border border-stone-100"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>{step === 'intro' &amp;&amp; (</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div className="p-10 flex flex-col items-center text-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div className="w-28 h-28 bg-rose-50 rounded-full flex items-center justify-center mb-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;span className="text-5xl text-rose-300"&gt;<span class="s2">✨</span>&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;h2 className="text-xl font-bold mb-4 text-stone-800 leading-tight"&gt;<span class="s1">準備好迎接升級版的自己了嗎？</span>&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;p className="text-stone-500 mb-10 text-sm leading-relaxed"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span><span class="s1">中年不是危機，而是尋找「自性」的召喚。</span>&lt;br/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span><span class="s1">解鎖妳的原廠設定，整合內在功能，</span>&lt;br/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span><span class="s1">為自己量身打造更自在的後半生。</span></p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;button onClick={() =&gt; { setStep('quiz'); setCurrentIndex(0); }} className="w-full bg-rose-700 text-white font-bold py-5 rounded-2xl shadow-lg active:scale-95 transition-all flex items-center justify-center gap-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span><span class="s1">展開自覺探索</span> &lt;Icons.ChevronRight /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>)}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>{step === 'quiz' &amp;&amp; (</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div className="p-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div className="flex justify-between items-center mb-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;span className="text-[10px] font-black text-rose-200 tracking-widest uppercase"&gt;Progress {currentIndex + 1} / {questions.length}&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div className="w-24 h-1 bg-stone-50 rounded-full overflow-hidden"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;div className="h-full bg-rose-300 transition-all duration-500" style={{ width: `${((currentIndex + 1) / questions.length) * 100}%` }}&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;h3 className="text-lg font-bold mb-10 min-h-[5rem] text-stone-700"&gt;{questions[currentIndex].text}&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div className="space-y-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>{questions[currentIndex].options.map((opt, idx) =&gt; (</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;button key={idx} onClick={() =&gt; handleAnswer(questions[currentIndex].dimension, opt.value)} className="w-full text-left p-6 border border-stone-100 rounded-3xl hover:bg-rose-50/30 flex items-center justify-between transition-all group active:bg-rose-50"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;span className="text-stone-600 font-medium text-sm"&gt;{opt.label}&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;div className="w-5 h-5 rounded-full border border-stone-200 group-hover:border-rose-300 group-hover:bg-rose-100"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>))}</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>)}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>{step === 'result' &amp;&amp; (</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div className="p-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div className="text-center mb-10"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div className="inline-block px-4 py-1.5 bg-stone-50 text-stone-400 rounded-full text-[10px] font-bold mb-3 border border-stone-100 uppercase tracking-widest"&gt;MBTI RESULT&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;h2 className="text-5xl font-black text-rose-900 mb-2 tracking-tighter"&gt;{result}&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;p className="text-xl font-bold text-stone-600"&gt;{mbtiData[result].name}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div className="bg-stone-50/50 rounded-3xl p-6 mb-8 border border-stone-100"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;h4 className="text-[11px] font-black text-stone-400 mb-5 tracking-widest flex items-center gap-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;Icons.Compass /&gt; <span class="s1">榮格八維心智功能</span></p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/h4&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div className="space-y-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>{mbtiData[result].functions.map((fn, i) =&gt; (</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;div key={i} className="flex items-center gap-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;div className="w-24 text-[10px] font-bold text-stone-400 uppercase tracking-wider"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                    </span>{i === 0 ? "<span class="s1">第一功能</span> (<span class="s1">主導</span>)" : i === 1 ? "<span class="s1">第二功能</span> (<span class="s1">輔導</span>)" : i === 2 ? "<span class="s1">第三功能</span>" : "<span class="s1">第四功能</span>"}</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;div className="flex-1 bg-white py-2 px-4 rounded-xl text-xs font-bold shadow-sm border border-stone-100"&gt;{fn}&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>))}</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div className="space-y-6 mb-10"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div className="flex gap-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;div className="mt-1 flex-shrink-0"&gt;&lt;Icons.Sparkles /&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;h4 className="font-bold text-stone-800 mb-1 text-sm"&gt;<span class="s1">好命自造指南</span>&lt;/h4&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;p className="text-stone-500 text-xs leading-relaxed text-justify"&gt;{mbtiData[result].fortune}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div className="flex gap-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;div className="mt-1 flex-shrink-0"&gt;&lt;Icons.BookOpen /&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;h4 className="font-bold text-stone-800 mb-1 text-sm"&gt;<span class="s1">第二人生行動建議</span>&lt;/h4&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;p className="text-stone-500 text-xs leading-relaxed text-justify"&gt;<span class="s1">中年轉型是為了發展「完整」的自己。嘗試有意識地練習妳的「第二功能」，能幫助妳在現實與理想中取得平衡，減少盲點。</span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;button onClick={() =&gt; window.location.reload()} className="w-full bg-rose-700 text-white font-bold py-5 rounded-3xl shadow-xl active:scale-95 transition-all flex items-center justify-center gap-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span><span class="s1">重新測驗</span> &lt;Icons.RefreshCw /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>)}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div className="mt-12 text-center max-w-[280px]"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p className="text-[11px] text-stone-400 leading-relaxed italic"&gt;</p>
+<p class="p3"><span class="s3"><span class="Apple-converted-space">                            </span></span>「如果你沒有意識到自己的潛意識，它將在不知不覺中引導妳的人生，成為妳口中的命運。」</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p className="text-[9px] text-stone-300 mt-3 font-medium uppercase tracking-[0.1em]"&gt;— Carl G. Jung&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>const root = ReactDOM.createRoot(document.getElementById('root'));</p>
+<p class="p1"><span class="Apple-converted-space">        </span>root.render(&lt;App /&gt;);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
